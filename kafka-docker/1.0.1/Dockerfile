@@ -1,5 +1,6 @@
 FROM tarikcurto/java:8
 
+ARG dir_config=./default_config
 ARG kafka_version=1.0.1
 ARG scala_version=2.12
 
@@ -30,7 +31,7 @@ RUN tar -xzf /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz -C /opt
 RUN rm -f /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz
 
 # Copy user config
-COPY server.properties producer.properties consumer.properties /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION}/config/
+COPY ${dir_config}/server.properties ${dir_config}/producer.properties ${dir_config}/consumer.properties /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION}/config/
 
 EXPOSE 9092
 VOLUME ["/opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION}", "/tmp/kafka-log"]

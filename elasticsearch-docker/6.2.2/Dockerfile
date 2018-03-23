@@ -1,6 +1,8 @@
 FROM tarikcurto/java:8
 
-ENV ELASTIC_SEARCH_VERSION 6.2.2
+ARG dir_config=./default_config
+
+ENV ELASTICSEARCH_VERSION 6.2.2
 
 # Script files
 COPY elasticsearch-download.sh /tmp/
@@ -8,14 +10,14 @@ COPY elasticsearch-download.sh /tmp/
 # Download necessary packages
 RUN yum install -y epel-release && yum install -y wget
 
-# Download Elastic Search
+# Download ElasticSearch
 RUN chmod +x /tmp/elasticsearch-download.sh && /tmp/elasticsearch-download.sh
 
-# Install Elastic Search
-RUN rpm --install /tmp/elasticsearch-${ELASTIC_SEARCH_VERSION}.rpm
+# Install ElasticSearch
+RUN rpm --install /tmp/elasticsearch-${ELASTICSEARCH_VERSION}.rpm
 
 # Copy client config
-COPY elasticsearch.yml jvm.options log4j2.properties /etc/elasticsearch/
+COPY ${dir_config}/elasticsearch.yml ${dir_config}/jvm.options ${dir_config}/log4j2.properties /etc/elasticsearch/
 RUN chown elasticsearch:elasticsearch -R /etc/elasticsearch/
 
 # Set elasticsearch as user container

@@ -1,5 +1,7 @@
 FROM tarikcurto/java:8
 
+ARG dir_config=./default_config
+
 ENV ZOOKEEPER_VERSION 3.4.11 \
     ZK_HOME /opt/zookeeper-${ZOOKEEPER_VERSION}
 
@@ -23,8 +25,8 @@ RUN tar -xzf /tmp/zookeeper-${ZOOKEEPER_VERSION}.tar.gz -C /opt
 RUN rm -f /tmp/zookeeper-${ZOOKEEPER_VERSION}.tar.gz
 
 # Configure
-COPY zoo.cfg /opt/zookeeper-${ZOOKEEPER_VERSION}/conf/
-COPY zookeeper-start.sh /usr/bin/
+COPY ${dir_config}/zoo.cfg /opt/zookeeper-${ZOOKEEPER_VERSION}/conf/
+COPY ${dir_config}/zookeeper-start.sh /usr/bin/
 
 ## Replace zookeper data directory
 #RUN mkdir $ZK_HOME/data && \
