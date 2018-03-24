@@ -2,8 +2,8 @@ FROM tarikcurto/java:8
 
 ARG dir_config=./default_config
 
-ENV ZOOKEEPER_VERSION 3.4.11 \
-    ZK_HOME /opt/zookeeper-${ZOOKEEPER_VERSION}
+ENV ZOOKEEPER_VERSION=3.4.11 \
+    ZK_HOME=/opt/zookeeper-3.4.11
 
 # Script files
 COPY zookeeper-download.sh /tmp/

@@ -1,13 +1,11 @@
 FROM tarikcurto/java:8
 
 ARG dir_config=./default_config
-ARG kafka_version=1.0.1
-ARG scala_version=2.12
 
-ENV KAFKA_VERSION=$kafka_version \
-    SCALA_VERSION=$scala_version \
-    KAFKA_HOME=/tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION} \
-    PATH=${PATH}:${KAFKA_HOME}/bin
+ENV KAFKA_VERSION=1.0.1 \
+    SCALA_VERSION=2.12 \
+    KAFKA_HOME=/tmp/kafka_2.12-1.0.1 \
+    PATH=${PATH}:/tmp/kafka_2.12-1.0.1/bin
 
 #COPY download-kafka.sh start-kafka.sh broker-list.sh create-topics.sh /tmp/
 

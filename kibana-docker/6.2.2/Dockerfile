@@ -3,7 +3,7 @@ FROM tarikcurto/java:8
 ARG dir_config=./default_config
 ARG kibana_port=9200
 
-ENV KIBANA_VERSION 6.2.2
+ENV KIBANA_VERSION=6.2.2
 
 # Script files
 COPY kibana-download.sh /tmp/
