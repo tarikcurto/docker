@@ -21,7 +21,7 @@ RUN wget -q https://www.apache.org/dist/zookeeper/zookeeper-${ZOOKEEPER_VERSION}
 # Install Zookeeper folder
 RUN tar -xzf /tmp/zookeeper-${ZOOKEEPER_VERSION}.tar.gz -C /opt
 
-# Delete uncessary files
+# Delete unnecessary files
 RUN rm -f /tmp/zookeeper-${ZOOKEEPER_VERSION}.tar.gz
 
 # Configure
